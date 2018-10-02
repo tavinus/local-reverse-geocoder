@@ -1,0 +1,19 @@
+[Unit]
+Description=Local Reverse Geocoder
+After=network.target
+
+[Service]
+Environment="PORT=3000"
+Environment=NODE_ENV=production
+Type=simple
+WorkingDirectory=/srv/local-reverse-geocoder
+ExecStart=/usr/bin/node /srv/local-reverse-geocoder/app.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=local-reverse-geocoder
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
